@@ -1,4 +1,4 @@
-def adj_form(df, adj_var):
+def adj_form(df: pd.DataFrame, adj_var: str):
   '''
   Calculate Adjustment Formula from a dataframe and a confounding variable
   

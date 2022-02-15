@@ -1,0 +1,41 @@
+---
+title: "Propensity Score Exercise"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message=FALSE)
+library(data.table)
+library(magrittr)
+library(ggplot2)
+library(yaml)
+library(pROC)
+library(glue)
+```
+
+```{r}
+confounders <- read_yaml('cofounders.yml')
+rhc <- fread('rhc.csv') %>% 
+  .[, swang1 := as.factor(ifelse(swang1=='RHC', 1, 0))]
+```
+
+```{r}
+confounders %>% 
+  paste(collapse=" + ") %>% 
+  paste("swang1", ., sep=" ~ ") ->
+  formula_
+ps_model <- glm(formula = formula_, family  = "binomial", data = rhc)
+ps_scores <- predict(ps_model, data=rhc, type = "response")
+auc_res <- auc(roc(rhc[, swang1], ps_scores))
+```
+
+```{r}
+data.table(
+  ps = ps_scores, 
+  swang1 = rhc[, swang1]
+) %>% 
+  ggplot(aes(ps, group=swang1, fill=swang1, color=swang1)) +
+  geom_density(alpha=0.3) +
+  ggtitle("AUC logistic: {auc_res %>% round(4)}" %>% glue)
+```
+

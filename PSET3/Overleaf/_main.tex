@@ -1,0 +1,74 @@
+%%%%%%%%%%%%%%%%%%%%%%%PREAMBLE%%%%%%%%%%%%%%%%%%%%%
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{enumerate}
+\usepackage[margin=3 cm]{geometry}
+\usepackage[colorlinks]{hyperref}
+\usepackage{bm} %bold math symbols
+\usepackage{float}
+\usepackage{natbib}
+    \bibliographystyle{ecta} %econometrica-style
+    \setcitestyle{authoryear,open={(},close={)}}
+    \hypersetup{colorlinks, citecolor=blue}
+\usepackage{soul} 
+\usepackage{rotating}
+\usepackage{subfiles}
+\usepackage{minted}
+\usepackage{lscape}
+\usepackage{pdflscape}
+
+%%%%%%%%%%%%%%%%%%%%%%%COMMANDS%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\V}{\mathbb{V}}
+\newcommand{\eps}{\mathbb{\epsilon}}
+\newcommand{\betahat}{\hat{\beta}}
+\DeclareMathOperator*{\plim}{plim}
+
+%%%%%%%%%%%%%%%%%%%%%%%TITLE%%%%%%%%%%%%%%%%%%%%%%%%
+\title{\Huge Problem Set 3: Discrete Choice \\ \LARGE Machine Learning and Causal Inference}
+\author{\Large Mathias Schindler \\ \large Data Science for Decision Making, Class of '22, \\ \large Barcelona School of Economics}
+\date{\Large Submission Date: Mar 9, 2022}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%MAKE DOCUMENT%%%%%%%%%%%%%%%
+\begin{document}
+\maketitle
+\hrule
+
+%%%%%%%%%%%%%%%%%%%%%%%BEGIN DOCUMENT%%%%%%%%%%%%%%%
+\tableofcontents
+\listoffigures
+\listoftables
+
+%\newpage
+
+%%% 1. BINARY
+\subfile{1_binary}
+
+
+%%% 2. MULTI
+\subfile{2_multi}
+
+
+%%% Appendic
+\newpage
+\subfile{99_appx}
+
+
+
+
+
+
+
+
+%References
+%\newpage
+%\clearpage
+%\bibliography{references}
+
+
+\end{document}
